@@ -19,7 +19,7 @@ db.defaults({ palavr_g: [] }).write()
 
 
 app.get("/",(req,res) => {
-  res.send("server run ...");
+  res.send("Estatistica Online :)");
 });
 
 app.get('/estatistica', (req, res ) => {
@@ -40,14 +40,14 @@ app.get('/palavras', (req, res ) => {
 app.get('/resert',(req, res) =>{
   db.get('search_g').remove({ palavra: "ok" }).write();
   db.get('result_g').remove({}).write();
-  res.send("DELETE");
+  res.send("Estatisticas Reiniciadas");
 })
 
 app.get('/remove_all',(req, res) =>{
   db.get('search_g').remove({ palavra: "ok" }).write();
   db.get('result_g').remove({}).write();
   db.get('palavr_g').remove({}).write();
-  res.send("DELETE");
+  res.send("Informações limpas com sucesso");
 })
 
 app.post('/add_position', (req, res) => {
@@ -86,7 +86,7 @@ app.post('/add_palavras', (req, res) => {
   .push({
           "id"      : id+1 ,
           "url"     : req.body.url,
-          "palavras": req.body.palavras.replace(/\n/g,',')
+          "palavras": '\n'+req.body.palavras //.replace(/\n/g,',')
         }).write();
   res.send("status 200");
 });
